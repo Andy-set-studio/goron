@@ -1,36 +1,24 @@
 const sizeScale = {
-  'base': '1rem',
   '300': '0.8rem',
+  '400': '1rem',
   '500': '1.25rem',
   '600': '1.56rem',
   '700': '1.95rem',
   '800': '2.44rem',
-  '900': '3.05rem',
-  'max': '4rem'
+  '900': '3.05rem'
 };
 
 const colors = {
-  'primary': '#173854',
-  'primary-shade': '#102538',
-  'primary-glare': '#22547c',
-  'highlight': '#fedb8b',
-  'light': '#ffffff',
-  'mid': '#cccccc',
-  'dark': '#333333',
-  'slate': '#404040'
+  primary: '#ff00ff',
+  light: '#ffffff',
+  dark: '#252525'
 };
 
 module.exports = {
+  colors,
+  sizeScale,
+  generateCustomProperties: true,
   utilities: {
-    'align': {
-      items: {
-        start: 'flex-start',
-        center: 'center',
-        end: 'flex-end'
-      },
-      output: 'responsive',
-      property: 'align-items'
-    },
     'bg': {
       items: colors,
       output: 'standard',
@@ -41,21 +29,10 @@ module.exports = {
       output: 'standard',
       property: 'color'
     },
-    'box': {
-      items: {
-        'block': 'block',
-        'flex': 'flex',
-        'inline-flex': 'inline-flex',
-        'hide': 'none'
-      },
-      output: 'responsive',
-      property: 'display'
-    },
     'font': {
       items: {
-        base:
-          "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'\"",
-        serif: '"\'Lora\', serif"'
+        base: 'Helvetica, sans-serif',
+        serif: 'Georgia, serif'
       },
       output: 'standard',
       property: 'font-family'
@@ -103,35 +80,6 @@ module.exports = {
       output: 'standard',
       property: 'padding-left'
     },
-    'space': {
-      items: {
-        between: 'space-between',
-        around: 'space-around',
-        before: 'flex-end'
-      },
-      output: 'responsive',
-      property: 'justify-content'
-    },
-    'stack': {
-      items: {
-        '300': 0,
-        '400': 10,
-        '500': 20,
-        '600': 30,
-        '700': 40
-      },
-      output: 'standard',
-      property: 'z-index'
-    },
-    'ta': {
-      items: {
-        right: 'right',
-        left: 'left',
-        center: 'center'
-      },
-      output: 'responsive',
-      property: 'text-align'
-    },
     'text': {
       items: sizeScale,
       output: 'responsive',
@@ -146,19 +94,10 @@ module.exports = {
       },
       output: 'standard',
       property: 'font-weight'
-    },
-    'width': {
-      items: {
-        full: '100%',
-        half: '50%',
-        quarter: '25%',
-        third: '33.333%'
-      },
-      output: 'responsive',
-      property: 'width'
     }
   },
   breakpoints: {
-    md: '48rem'
+    md: '48em',
+    lg: '68em'
   }
 };
