@@ -13,7 +13,8 @@ const init = () => {
   let css = '';
   const pathIndex = process.argv.indexOf('-out');
   const cleanCSS = new CleanCSS();
-
+  
+  // Bail out if the path isn't defined
   if (pathIndex <= 0 && !config.hasOwnProperty('outputPath')) {
     console.log(
       chalk.red(
@@ -25,17 +26,20 @@ const init = () => {
   }
 
   const outputPath = config.outputPath || process.argv.slice(pathIndex + 1)[0];
-
+  
+  // The path has to contain a filename so we need to bail if that's not the case
   if (outputPath.indexOf('.css') < 0) {
     console.log(chalk.red(`Please add a css file to your path.`));
     console.log(chalk.red(`Example: path/to/my/folder/tokens.css`));
     console.log(chalk.blue('Exiting.'));
     return;
   }
-
+  
+  // Add the custom props and the media query-less clases
   css += customProperties(config);
   css += generator(config, ['responsive', 'standard']);
-
+  
+  // If there's some breakpoints, generate the classes that are responsive
   Object.keys(config.breakpoints).forEach(key => {
     css += `
       @media (min-width: ${config.breakpoints[key]}) {
