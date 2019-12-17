@@ -1,19 +1,29 @@
 #!/usr/bin/env node
 
+const {cosmiconfig, cosmiconfigSync} = require('cosmiconfig');
 const chalk = require('chalk');
 const CleanCSS = require('clean-css');
 const fs = require('fs');
 const shell = require('shelljs');
 
-const config = require('./default/config.js');
 const customProperties = require('./components/custom-properties.js');
 const generator = require('./components/generator.js');
 
+let config = require('./default/config.js');
+
+// The main organ grinder
 const init = () => {
   let css = '';
   const pathIndex = process.argv.indexOf('-out');
   const cleanCSS = new CleanCSS();
-  
+
+  // Try to load the user’s config
+  const userConfig = cosmiconfigSync('goron', {searchPlaces: ['goron.config.js']}).search();
+
+  if (userConfig) {
+    config = userConfig;
+  }
+
   // Bail out if the path isn't defined
   if (pathIndex <= 0 && !config.hasOwnProperty('outputPath')) {
     console.log(
@@ -26,7 +36,7 @@ const init = () => {
   }
 
   const outputPath = config.outputPath || process.argv.slice(pathIndex + 1)[0];
-  
+
   // The path has to contain a filename so we need to bail if that's not the case
   if (outputPath.indexOf('.css') < 0) {
     console.log(chalk.red(`Please add a css file to your path.`));
@@ -34,11 +44,11 @@ const init = () => {
     console.log(chalk.blue('Exiting.'));
     return;
   }
-  
+
   // Add the custom props and the media query-less clases
   css += customProperties(config);
   css += generator(config, ['responsive', 'standard']);
-  
+
   // If there's some breakpoints, generate the classes that are responsive
   Object.keys(config.breakpoints).forEach(key => {
     css += `
