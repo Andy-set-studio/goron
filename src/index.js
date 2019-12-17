@@ -21,7 +21,7 @@ const init = () => {
   const userConfig = cosmiconfigSync('goron', {searchPlaces: ['goron.config.js']}).search();
 
   if (userConfig) {
-    config = userConfig;
+    config = userConfig.config;
   }
 
   // Bail out if the path isn't defined
@@ -53,7 +53,7 @@ const init = () => {
   Object.keys(config.breakpoints).forEach(key => {
     css += `
       @media (min-width: ${config.breakpoints[key]}) {
-        ${generator(config, ['responsive'], `${key}:`)}
+        ${generator(config, ['responsive'], `${key}\\:`)}
       }
     `.trim();
   });
@@ -66,6 +66,8 @@ const init = () => {
   }
 
   shell.exec(`echo "${css}" > ${outputPath}`);
+
+  console.log(chalk.green('Token utility classes generated!'));
 };
 
 init();
