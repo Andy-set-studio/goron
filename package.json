@@ -1,0 +1,28 @@
+{
+  "name": "goron",
+  "version": "1.0.0",
+  "description": "A simple design token utility class generator",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "goron": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hankchizljaw/goron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hankchizljaw/goron/issues"
+  },
+  "homepage": "https://github.com/hankchizljaw/goron#readme",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "clean-css": "^4.2.1",
+    "shelljs": "^0.8.3"
+  }
+}
