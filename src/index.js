@@ -5,8 +5,9 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const shell = require('shelljs');
 
-const generator = require('./components/generator.js');
 const config = require('./default/config.js');
+const customProperties = require('./components/custom-properties.js');
+const generator = require('./components/generator.js');
 
 const init = () => {
   let css = '';
@@ -32,6 +33,7 @@ const init = () => {
     return;
   }
 
+  css += customProperties(config);
   css += generator(config, ['responsive', 'standard']);
 
   Object.keys(config.breakpoints).forEach(key => {

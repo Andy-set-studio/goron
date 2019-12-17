@@ -1,3 +1,14 @@
+const colors = {
+  primary: '#ff00ff',
+  light: '#ffffff',
+  dark: '#252525'
+};
+
+const fonts = {
+  base: 'Helvetica, sans-serif',
+  serif: 'Georgia, serif'
+};
+
 const sizeScale = {
   '300': '0.8rem',
   '400': '1rem',
@@ -8,15 +19,10 @@ const sizeScale = {
   '900': '3.05rem'
 };
 
-const colors = {
-  primary: '#ff00ff',
-  light: '#ffffff',
-  dark: '#252525'
-};
-
 module.exports = {
   colors,
   sizeScale,
+  fonts,
   generateCustomProperties: true,
   utilities: {
     'bg': {
@@ -30,10 +36,7 @@ module.exports = {
       property: 'color'
     },
     'font': {
-      items: {
-        base: 'Helvetica, sans-serif',
-        serif: 'Georgia, serif'
-      },
+      items: fonts,
       output: 'standard',
       property: 'font-family'
     },
