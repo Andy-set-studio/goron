@@ -139,3 +139,79 @@ module.exports = {
   }
 };
 ```
+
+## Generated classes example
+
+Let’s use the `leading` option from the default config for this. The config looks like this:
+
+```js
+'leading': {
+  items: {
+    tight: '1.2',
+    mid: '1.5',
+    loose: '1.7'
+  },
+  output: 'standard',
+  property: 'line-height'
+}
+```
+
+Goron takes that and generates the following CSS:
+
+```css
+.leading-tight {
+  line-height: 1.2;
+}
+
+.leading-mid {
+  line-height: 1.5;
+}
+
+.leading-loose {
+  line-height: 1.7;
+}
+```
+
+If I set the output to be `responsive` instead of `standard`, we get this:
+
+```css
+.leading-tight {
+  line-height: 1.2;
+}
+
+.leading-mid {
+  line-height: 1.5;
+}
+
+.leading-loose {
+  line-height: 1.7;
+}
+
+@media (min-width: 48em) {
+  .md\:leading-tight {
+    line-height: 1.2;
+  }
+
+  .md\:leading-mid {
+    line-height: 1.5;
+  }
+
+  .md\:leading-loose {
+    line-height: 1.7;
+  }
+}
+
+@media (min-width: 68em) {
+  .lg\:leading-tight {
+    line-height: 1.2;
+  }
+
+  .lg\:leading-mid {
+    line-height: 1.5;
+  }
+
+  .lg\:leading-loose {
+    line-height: 1.7;
+  }
+}
+```
