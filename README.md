@@ -3,9 +3,25 @@ Goron is a simple design token utility class generator.
 
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
 
-This is extremely under development and the docs are rubbish.
+**This is extremely under development and the docs are rubbish.**
 
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+
+## Getting started 
+
+First up, install: 
+
+```bash
+npm install goron
+```
+
+Then run goron and determine your CSS output:
+
+```bash
+goron -out src/css/tokens.css
+```
+
+⚠️ You have to set a CSS file output for it to work properly.
 
 ## Config
 
