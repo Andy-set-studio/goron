@@ -65,8 +65,14 @@ const init = () => {
     shell.exec(`mkdir -p ${outputPath.replace(/[^\/]*$/, '')}`);
   }
 
-  shell.exec(`echo "${css}" > ${outputPath}`);
-
+  /* Exeption for windows machines removes strings from echo command that are necesary on unix systems for echo command 
+    but meanwhile wrap output css in strings on windows. The solution removes the strings on windows but keeps them on unix systems.
+  */
+  if (process.platform === "win32") {
+    shell.exec(`echo ${css} > ${outputPath}`);
+  } else {
+    shell.exec(`echo "${css}" > ${outputPath}`);
+  }
   console.log(chalk.green('Token utility classes generated!'));
 };
 
